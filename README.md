@@ -1,276 +1,204 @@
-# Budget Planning System
-## B.Com CA Final Year Project
+# BudgetPro — Personal Budget Planning System
+### B.Com CA Final Year Project
+
+A full-stack personal finance management web application built with Node.js, Express, and SQLite. Helps users track income, manage expenses, set budget goals, monitor savings, and generate financial reports — all from a clean browser-based UI.
 
 ---
 
-## 🚀 How to Run This Project
+## Tech Stack
 
-### Prerequisites
-- **Node.js** (Download from https://nodejs.org - choose LTS version)
-
-### Steps to Run
-
-1. **Open Command Prompt/Terminal** in this folder
-
-2. **Install dependencies** (first time only):
-   ```
-   npm install
-   ```
-
-3. **Start the server**:
-   ```
-   npm start
-   ```
-
-4. **Open browser** and go to:
-   ```
-   http://localhost:3000
-   ```
-
-5. **Create an account** and start using!
-
-### To Stop the Server
-Press `Ctrl + C` in the terminal
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, Vanilla JavaScript, Chart.js, Font Awesome |
+| Backend | Node.js, Express.js |
+| Database | SQLite (via sql.js — no installation needed) |
+| Auth | Session-based with bcryptjs password hashing |
 
 ---
 
 ## Features
-## B.Com CA Final Year Project
-### Full Stack Application with Node.js + PostgreSQL
-
-A comprehensive web-based budget planning and personal finance management system.
-
----
-
-## 🏗️ Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| **Frontend** | HTML5, CSS3, JavaScript (ES6+), Chart.js |
-| **Backend** | Node.js, Express.js |
-| **Database** | PostgreSQL |
-| **Authentication** | Session-based with bcrypt |
-
----
-
-## 📁 Project Structure
-
-```
-budget-planning-system/
-│
-├── server.js               # Main server file
-├── package.json            # Node.js dependencies
-├── .env                    # Environment variables
-├── README.md               # Project documentation
-│
-├── config/
-│   └── database.js         # PostgreSQL connection
-│
-├── middleware/
-│   └── auth.js             # Authentication middleware
-│
-├── routes/
-│   ├── auth.js             # Login/Register routes
-│   ├── income.js           # Income CRUD routes
-│   ├── expenses.js         # Expense CRUD routes
-│   ├── budget.js           # Budget goals routes
-│   ├── savings.js          # Savings goals routes
-│   └── reports.js          # Reports & analytics routes
-│
-├── database/
-│   └── schema.sql          # PostgreSQL database schema
-│
-└── public/                 # Frontend files
-    ├── index.html
-    ├── css/
-    │   └── style.css
-    └── js/
-        ├── api.js          # API service functions
-        └── app.js          # Main application logic
-```
-
----
-
-## ✨ Features
-
-### 🔐 Authentication
-- User registration with email
-- Secure login with hashed passwords
-- Session-based authentication
-- Logout functionality
-
-### 📊 Dashboard
-- Total income, expenses, balance overview
-- Expense distribution chart (Pie Chart)
-- Income vs Expenses comparison (Bar Chart)
-- Recent transactions list
-
-### 💰 Income Management
-- Add income from multiple sources
-- Track income history
-- Edit and delete records
-
-### 💸 Expense Management
-- Categorized expense tracking
-- Multiple expense categories
-- Full CRUD operations
-
-### 🎯 Budget Goals
-- Set monthly budget limits per category
-- Visual progress tracking
-- Over-budget alerts
-
-### 🐷 Savings Goals
-- Create savings targets with deadlines
-- Track progress with contributions
-- Visual progress indicators
-
-### 📈 Reports
-- Monthly financial reports
-- Income/Expense breakdown
-- 6-month trend analysis
-- Print-friendly reports
-
----
-
-## 🚀 Setup Instructions
-
-### Prerequisites
-1. **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
-2. **PostgreSQL** (v12 or higher) - [Download](https://www.postgresql.org/download/)
-
-### Step 1: Install PostgreSQL
-
-1. Download and install PostgreSQL
-2. During installation, remember your password for the `postgres` user
-3. Open **pgAdmin** or **psql** command line
-
-### Step 2: Create Database
-
-Open psql or pgAdmin and run:
-
-```sql
-CREATE DATABASE budget_planning_db;
-```
-
-Then run the schema file:
-```bash
-psql -U postgres -d budget_planning_db -f database/schema.sql
-```
-
-Or copy the contents of `database/schema.sql` and run in pgAdmin.
-
-### Step 3: Configure Environment
-
-Edit the `.env` file with your PostgreSQL credentials:
-
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=your_postgres_password
-DB_NAME=budget_planning_db
-PORT=3000
-SESSION_SECRET=your_secret_key_here
-```
-
-### Step 4: Install Dependencies
-
-```bash
-npm install
-```
-
-### Step 5: Run the Application
-
-**Development mode (with auto-restart):**
-```bash
-npm run dev
-```
-
-**Production mode:**
-```bash
-npm start
-```
-
-### Step 6: Open in Browser
-
-Go to: **http://localhost:3000**
-
----
-
-## 📖 API Endpoints
 
 ### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | User login |
-| POST | `/api/auth/logout` | User logout |
-| GET | `/api/auth/me` | Get current user |
-| GET | `/api/auth/status` | Check auth status |
+- User registration (full name, email, username, password)
+- Secure login — accepts username or email
+- Password hashing with bcrypt (min 6 characters)
+- Session-based authentication with 24-hour expiry
+- Logout with session destruction
 
-### Income
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/income` | Get all income |
-| GET | `/api/income/:id` | Get single income |
-| POST | `/api/income` | Add income |
-| PUT | `/api/income/:id` | Update income |
-| DELETE | `/api/income/:id` | Delete income |
+### Dashboard
+- Total income, total expenses, balance, and savings summary
+- Expense distribution pie chart
+- Income vs Expenses bar chart (6-month trend)
+- Recent transactions table
 
-### Expenses
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/expenses` | Get all expenses |
-| GET | `/api/expenses/:id` | Get single expense |
-| POST | `/api/expenses` | Add expense |
-| PUT | `/api/expenses/:id` | Update expense |
-| DELETE | `/api/expenses/:id` | Delete expense |
+### Income Management
+- Add income from: Salary, Business, Freelance, Investment, Rental, Other
+- Full edit and delete support
+- Filter by month
+- Income history table
 
-### Budget
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/budget` | Get all budget goals |
-| GET | `/api/budget/status/:month` | Get budget with spending |
-| POST | `/api/budget` | Add/Update budget goal |
-| DELETE | `/api/budget/:id` | Delete budget goal |
+### Expense Management
+- Categorized tracking: Food, Transport, Housing, Utilities, Healthcare, Education, Entertainment, Shopping, Insurance, Other
+- Full edit and delete support
+- Filter by month and by category
 
-### Savings
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/savings` | Get all savings goals |
-| POST | `/api/savings` | Create savings goal |
-| POST | `/api/savings/:id/contribute` | Add contribution |
-| DELETE | `/api/savings/:id` | Delete savings goal |
+### Budget Goals
+- Set monthly spend limits per category
+- Real-time budget vs actual comparison
+- Status indicators: Safe / Warning (80%+) / Exceeded (100%+)
+- Visual progress bars per category
+
+### Savings Goals
+- Create named goals with target amount and deadline
+- Add contributions incrementally
+- Track progress with percentage completion
+- Savings transaction history
 
 ### Reports
+- Monthly report: income, expenses, net savings, savings rate
+- Income breakdown by source
+- Expense breakdown by category
+- 6-month trend chart
+- Print-friendly report view
+
+---
+
+## Project Structure
+
+```
+smart-budget-planner/
+│
+├── server.js                  # Main Express server, route registration
+├── package.json               # Dependencies and scripts
+├── .env                       # Environment config (PORT, DB_PATH, SESSION_SECRET)
+├── .gitignore                 # Excludes node_modules, .env, budget.db, etc.
+├── LICENSE                    # MIT License
+├── README.md                  # This file
+├── HOWTORUN.md                # Quick start guide
+│
+├── config/
+│   └── database.js            # SQLite init, table creation, run/get/all helpers
+│
+├── middleware/
+│   └── auth.js                # isAuthenticated / isNotAuthenticated guards
+│
+├── routes/
+│   ├── auth.js                # Register, Login, Logout, /me, /status
+│   ├── income.js              # Income CRUD + month filter
+│   ├── expenses.js            # Expense CRUD + month/category filter
+│   ├── budget.js              # Budget goals CRUD + budget status with spending
+│   ├── savings.js             # Savings goals CRUD + contributions
+│   └── reports.js             # Dashboard, monthly, trend, distribution, recent
+│
+├── database/
+│   ├── schema.sql             # Reference SQL schema (documentation)
+│   └── budget.db              # SQLite database file (auto-created, git-ignored)
+│
+└── public/                    # Static frontend served by Express
+    ├── index.html             # Single-page app (auth + all pages)
+    ├── css/
+    │   └── style.css          # Full UI styling
+    └── js/
+        ├── api.js             # All fetch() calls to the backend API
+        └── app.js             # UI logic, page routing, chart rendering
+```
+
+---
+
+## API Endpoints
+
+### Auth — `/api/auth`
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/reports/dashboard` | Dashboard summary |
-| GET | `/api/reports/monthly/:month` | Monthly report |
-| GET | `/api/reports/trend/:months` | Trend data |
+|---|---|---|
+| POST | `/register` | Create new account |
+| POST | `/login` | Login with username or email |
+| POST | `/logout` | Destroy session |
+| GET | `/me` | Get current user info |
+| GET | `/status` | Check if session is active |
+
+### Income — `/api/income`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Get all income records |
+| GET | `/:id` | Get single income record |
+| GET | `/month/:month` | Get income for a month (YYYY-MM) |
+| POST | `/` | Add new income |
+| PUT | `/:id` | Update income record |
+| DELETE | `/:id` | Delete income record |
+
+### Expenses — `/api/expenses`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Get all expenses |
+| GET | `/:id` | Get single expense |
+| GET | `/month/:month` | Get expenses for a month |
+| GET | `/category/:category` | Get expenses by category |
+| POST | `/` | Add new expense |
+| PUT | `/:id` | Update expense |
+| DELETE | `/:id` | Delete expense |
+
+### Budget — `/api/budget`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Get all budget goals |
+| GET | `/month/:month` | Get budget goals for a month |
+| GET | `/status/:month` | Get budget vs actual spending |
+| POST | `/` | Create or update a budget goal |
+| DELETE | `/:id` | Delete budget goal |
+
+### Savings — `/api/savings`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Get all savings goals |
+| GET | `/:id` | Get single savings goal |
+| POST | `/` | Create savings goal |
+| POST | `/:id/contribute` | Add a contribution |
+| PUT | `/:id` | Update savings goal |
+| DELETE | `/:id` | Delete savings goal |
+
+### Reports — `/api/reports`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/dashboard` | Overall income, expense, balance, savings totals |
+| GET | `/monthly/:month` | Full monthly breakdown with savings rate |
+| GET | `/trend/:months` | Month-by-month trend for N months |
+| GET | `/expense-distribution` | Expense totals grouped by category |
+| GET | `/recent-transactions` | Latest combined income + expense records |
 
 ---
 
-## 🔒 Security Features
+## Database Tables
 
-- Password hashing with bcrypt
-- Session-based authentication
-- SQL injection prevention (parameterized queries)
-- Input validation on all endpoints
-- Protected API routes
+| Table | Description |
+|---|---|
+| `users` | Registered user accounts |
+| `income` | Income records per user |
+| `expenses` | Expense records per user |
+| `budget_goals` | Monthly budget limits per category |
+| `savings_goals` | Savings targets with progress tracking |
+| `savings_transactions` | Individual contributions to savings goals |
 
 ---
 
-## 👨‍💻 Project Information
+## Security
 
-**Project Title:** Budget Planning System  
+- Passwords hashed with bcrypt (salt rounds: 10)
+- Session stored server-side with `express-session`
+- All API routes protected by `isAuthenticated` middleware
+- Parameterized SQL queries throughout — no raw string interpolation
+- `.env` file git-ignored (secrets never committed)
+
+---
+
+## Project Information
+
+**Title:** BudgetPro — Personal Budget Planning System  
 **Course:** B.Com CA (Computer Applications)  
 **Year:** Final Year Project  
-**Technology Stack:** Node.js, Express, PostgreSQL, HTML, CSS, JavaScript
+**Currency:** Indian Rupee (₹)
 
 ---
 
-## 📄 License
+## License
 
-This project is created for educational purposes as part of B.Com CA Final Year curriculum.
+MIT License — see [LICENSE](LICENSE) for details.
