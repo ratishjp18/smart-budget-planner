@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables (contains secrets)
+.env
+
+# Database file (runtime data, not source)
+database/budget.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+
+# Zip files
+*.zip
+
+# "New folder" (duplicate/temp folder)
+New folder/
